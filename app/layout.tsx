@@ -12,6 +12,8 @@ type RootLayoutProps = {
 const RootLayout = (props: RootLayoutProps) => {
 
   const [ user, setUser ] = useState({ email: "", password: "" });
+ 
+  
   
   return (
     <userContext.Provider value={{user, setUser}}>

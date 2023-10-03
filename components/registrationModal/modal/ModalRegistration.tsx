@@ -3,10 +3,10 @@
 import React from "react";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import ModalLogInContent from "./ModalLogInContent";
-import ModalOverlay from "./ModalOverlay";
+import ModalRegistrationContent from "./ModalRegistrationContent";
+import ModalOverlay from "@/components/logInModal/modal/ModalOverlay";
 
-export default function ModalLogIn() {
+export default function ModalRegistration() {
   const [showModal, setShowModal] = useState(false);
 
   const onCloseHandler = () => {
@@ -15,11 +15,11 @@ export default function ModalLogIn() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Log In</button>
+      <button onClick={() => setShowModal(true)}>Regiatration</button>
       {showModal &&
         createPortal(
           <ModalOverlay onClose={onCloseHandler}>
-            <ModalLogInContent onClose={onCloseHandler} />
+            <ModalRegistrationContent onClose={onCloseHandler}/>
           </ModalOverlay>,
           document.body
         )}
