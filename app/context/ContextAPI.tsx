@@ -5,6 +5,8 @@ type user = {
     password: string;
     phoneNumber?: string;
     location?: string;
+    firtsName?: string;
+    secondName?: string;
 }
 
-export const userContext = createContext({ user: {}, setUser: (user: user) => {}});
+export const userContext = createContext({ user: {isLogin: false}, setUser: (user: user) => {}});

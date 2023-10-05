@@ -1,49 +1,54 @@
 import React from "react";
 
-import { userContext } from "@/app/api/context/ContextAPI";
-import { useState, useContext } from "react";
+import { userContext } from "@/app/context/ContextAPI";
+import { useContext } from "react";
+import { userRegistration } from "@/utils/proxy";
 
 type RegistrationFormProps = {
   onClose: () => void;
 };
 
 export default function RegstrationForm(props: RegistrationFormProps) {
-  const [userEmailInput, setUserEmail] = useState("");
-  const [userPasswordInput, setUserPasswordInput] = useState("");
-  const [userPhoneNumberInput, setUserPhoneNumberInput] = useState("");
-  const [userLocation, setUserLocation] = useState("");
-
   const { user, setUser } = useContext(userContext);
 
-  const onChangeEmailHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChangeEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
-    setUserEmail(e.target.value);
+    setUser({...user, email: e.target.value})
   };
 
-  const onChangePasswordHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChangePasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
-    setUserPasswordInput(e.target.value);
+    setUser({...user, password: e.target.value})
   };
 
-  const onChangePhoneNumberHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChangePhoneNumberHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
-    setUserPhoneNumberInput(e.target.value);
+    setUser({...user, phoneNumber: e.target.value})
   };
 
-  const onChangeLocationHandler = (e: React.FormEvent<HTMLInputElement>) => {
+  const onChangeLocationHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     //@ts-ignore
-    setUserLocation(e.target.value);
+    setUser({...user, location: e.target.value})
   };
 
-  const onSubmitHandler = () => {
-    setUser({
-      ...user,
-      email: userEmailInput,
-      password: userPasswordInput,
-      phoneNumber: userPhoneNumberInput,
-      location: userLocation
-    });
-    props.onClose();
+  const onChangeFirstNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //@ts-ignore
+    setUser({...user, firstName: e.target.value})
+  };
+
+  const onChangeSecondNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //@ts-ignore
+    setUser({...user, secondName: e.target.value})
+  };
+
+  const onSubmitHandler = async() => {
+    //@ts-ignore
+    if(user.email !== '') {
+      const userData = await userRegistration(user);
+      //@ts-ignore
+      setUser({...user, isLogin: userData.user.data.isLogin, ...userData.user.data.user})
+      props.onClose()
+    }
   };
 
   return (
@@ -67,6 +72,22 @@ export default function RegstrationForm(props: RegistrationFormProps) {
             type="tel"
             name="phone_number"
             onChange={onChangePhoneNumberHandler}
+          />
+        </label>
+        <label>
+          First name:
+          <input
+            type="text"
+            name="firstName"
+            onChange={onChangeFirstNameHandler}
+          />
+        </label>
+        <label>
+          Second name:
+          <input
+            type="text"
+            name="secondName"
+            onChange={onChangeSecondNameHandler}
           />
         </label>
         <label>

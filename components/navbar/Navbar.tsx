@@ -1,18 +1,15 @@
 "use client";
 
 import React from "react";
-import ModalLogIn from "../logInModal/modal/ModalLogIn";
-import ModalRegistration from "../registrationModal/modal/ModalRegistration";
-
+import LogInRegistrationPart from "./LogInRegistrationPart";
+import UserButton from "./UserButton";
+import { useContext } from "react";
+import { userContext } from "@/app/context/ContextAPI";
 
 const NavbarCustom = () => {
-  
-  return (
-    <div>
-        <ModalLogIn />
-        <ModalRegistration />
-    </div>
-  );
+  const { user, setUser } = useContext(userContext);
+
+  return <div>{user.isLogin ? <UserButton /> : <LogInRegistrationPart />}</div>;
 };
 
 export default NavbarCustom;
