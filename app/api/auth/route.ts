@@ -38,9 +38,7 @@ export async function GET() {
       "Set-Cookie": cookieString
     }, 
   });  
-  console.log(res);
   
-
   //@ts-ignore
   const cookieRes = res.headers.getSetCookie();
   

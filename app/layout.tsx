@@ -3,7 +3,7 @@
 import React, { ReactNode, useEffect, useContext } from "react";
 import NavbarCustom from "@/components/navbar/Navbar";
 import { useState } from "react";
-import { userContext } from "./context/ContextAPI";
+import { userContext, flightsContext } from "./context/ContextAPI";
 import { userAuth } from "@/utils/proxy";
 
 type RootLayoutProps = {
@@ -12,6 +12,7 @@ type RootLayoutProps = {
 
 const RootLayout = (props: RootLayoutProps) => {
   const [user, setUser] = useState({ email: "", password: "", isLogin: false });
+  const [flights, setFlights] = useState({});
 
   useEffect(() => {
     const getData = async () => {
@@ -25,14 +26,16 @@ const RootLayout = (props: RootLayoutProps) => {
   }, []);
 
   return (
-    <userContext.Provider value={{ user, setUser }}>
-      <html lang="en">
-        <body>
-          <NavbarCustom />
-          <main className="app">{props.children}</main>
-        </body>
-      </html>
-    </userContext.Provider>
+    <flightsContext.Provider value={{ flights, setFlights }}>
+      <userContext.Provider value={{ user, setUser }}>
+        <html lang="en">
+          <body>
+            <NavbarCustom />
+            <main className="app">{props.children}</main>
+          </body>
+        </html>
+      </userContext.Provider>
+    </flightsContext.Provider>
   );
 };
 

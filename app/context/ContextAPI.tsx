@@ -9,4 +9,15 @@ type user = {
     secondName?: string;
 }
 
+type flights = {
+    searchData?: {
+
+    };
+    fligthsData?: {
+
+    }
+}
+
 export const userContext = createContext({ user: {isLogin: false}, setUser: (user: user) => {}});
+
+export const flightsContext = createContext({flights: {}, setFlights: (flights: flights) => {}})

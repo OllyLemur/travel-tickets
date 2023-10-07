@@ -5,8 +5,8 @@ export const userLogIn = async (body: any) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-    credentials: "include"
-  });  
+    credentials: "include",
+  });
 
   const data = await result.json();
 
@@ -20,7 +20,7 @@ export const userRegistration = async (body: any) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(body),
-    credentials: "include"
+    credentials: "include",
   });
 
   const data = await result.json();
@@ -34,10 +34,36 @@ export const userAuth = async () => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include"
+    credentials: "include",
   });
-  
+
   const data = await result.json();
 
-  return data
+  return data;
+};
+
+export const flightSearch = async (
+  to: string,
+  from: string,
+  location: string,
+  destination: string
+) => {
+  const result = await fetch(
+    `api/flights?to=${to}&from=${from}&location=${location}&destination=${destination}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      credentials: "include",
+    }
+  );
+
+  if (result.ok) {
+    const data = await result.json();
+
+    return data;
+  } else {
+    throw new Error('Cann\'t find flits in this dates');
+  }
 };

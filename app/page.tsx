@@ -1,5 +1,7 @@
+import SearchForm from "@/components/searchBar/SearchForm";
+
 export default function Home() {
   return (
-    <div> This is first page</div>
+    <div> <SearchForm /></div>
   );
 }
