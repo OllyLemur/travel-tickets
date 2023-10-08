@@ -5,6 +5,7 @@ import { useState } from "react";
 import { createPortal } from "react-dom";
 import ModalRegistrationContent from "./ModalRegistrationContent";
 import ModalOverlay from "@/components/logInModal/modal/ModalOverlay";
+import styles from '../../logInModal/modalForm.module.scss'
 
 export default function ModalRegistration() {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +16,7 @@ export default function ModalRegistration() {
 
   return (
     <>
-      <button onClick={() => setShowModal(true)}>Regiatration</button>
+      <button className={styles.btn} onClick={() => setShowModal(true)}>Registration</button>
       {showModal &&
         createPortal(
           <ModalOverlay onClose={onCloseHandler}>

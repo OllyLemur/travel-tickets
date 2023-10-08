@@ -5,6 +5,8 @@ import { flightsContext } from "@/app/context/ContextAPI";
 import { flightSearch } from "@/utils/proxy";
 import { useRouter } from "next/navigation";
 
+import styles from './search.module.scss'
+
 export default function SearchForm() {
   const { flights, setFlights } = useContext(flightsContext);
   const router = useRouter();
@@ -73,8 +75,8 @@ export default function SearchForm() {
   };
 
   return (
-    <>
-      <form>
+    <div className={styles.contForm}>
+      <form className={styles.form}>
         <input placeholder="From" type="data" onChange={onChangeFromHandler} />
         <input placeholder="To" type="data" onChange={onChangeToHandler} />
         <input
@@ -93,7 +95,7 @@ export default function SearchForm() {
           onChange={onChangeSeatsHandler}
         />
       </form>
-      <button onClick={onSubmitHandler}>Search</button>
-    </>
+      <button className={styles.btn} onClick={onSubmitHandler}>Search</button>
+    </div>
   );
 }

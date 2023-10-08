@@ -1,7 +1,11 @@
-import SearchForm from "@/components/searchBar/SearchForm";
+import Search from "@/components/searchBar/Search";
+import WelcomeMessage from "@/components/welcomeMessage/WelcomeMessage";
 
 export default function Home() {
   return (
-    <div> <SearchForm /></div>
+    <div>
+      <WelcomeMessage />
+        <Search/>
+    </div>
   );
 }

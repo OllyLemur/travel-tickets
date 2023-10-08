@@ -4,6 +4,7 @@ import { userContext } from "@/app/context/ContextAPI";
 import { userLogIn } from "@/utils/proxy";
 import React from "react";
 import { useState, useContext } from "react";
+import styles from "./modalForm.module.scss"
 
 type LogInFormProps = {
   onClose: () => void;
@@ -38,8 +39,9 @@ export default function LogInForm(props: LogInFormProps) {
     setUser({ ...user, password: e.target.value });
   };
   return (
-    <>
-      <form>
+    <div className={styles.cont}>
+      <h2>Log In</h2>
+      <form className={styles.form}>
         <label>
           Email:
           <input type="email" name="email" onChange={onChangeEmailHandler} />
@@ -53,7 +55,7 @@ export default function LogInForm(props: LogInFormProps) {
           />
         </label>
       </form>
-      <button onClick={onSubmitHandler}>Log In</button>
-    </>
+      <button className={styles.btnLogIn} onClick={onSubmitHandler}>Log In</button>
+    </div>
   );
 }

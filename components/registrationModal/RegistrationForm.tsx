@@ -3,6 +3,7 @@ import React from "react";
 import { userContext } from "@/app/context/ContextAPI";
 import { useContext } from "react";
 import { userRegistration } from "@/utils/proxy";
+import styles from '../logInModal/modalForm.module.scss'
 
 type RegistrationFormProps = {
   onClose: () => void;
@@ -52,8 +53,9 @@ export default function RegstrationForm(props: RegistrationFormProps) {
   };
 
   return (
-    <>
-      <form>
+    <div className={styles.cont}>
+      <h2>Registration</h2>
+      <form className={styles.form}>
         <label>
           Email:
           <input type="email" name="email" onChange={onChangeEmailHandler} />
@@ -99,7 +101,7 @@ export default function RegstrationForm(props: RegistrationFormProps) {
           />
         </label>
       </form>
-      <button onClick={onSubmitHandler}>Registration</button>
-    </>
+      <button className={styles.btnLogIn} onClick={onSubmitHandler}>Registration</button>
+    </div>
   );
 }

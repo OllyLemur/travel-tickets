@@ -7,10 +7,10 @@
     border: 2px solid rgb(240, 240, 240);
     border-radius: 12px;
     position:  absolute;
-    width: 250px;
-    top: 70px;
-    left: calc(50% - 125px);
-    bottom: 70px;
+    width: 26%;
+    top: 100px;
+    left: calc(37% - 4rem);
+    padding: 2rem 3rem;
   }
 
   .modal-overlay {
@@ -20,4 +20,10 @@
     width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.5);
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Courier New', Courier, monospace;
   }

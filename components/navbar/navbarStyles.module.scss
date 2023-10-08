@@ -1,0 +1,18 @@
+.cont {
+  background-color: cornflowerblue;
+  height: 5rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content {
+  width: 70%;
+}
+
+.login {
+  width: fit-content;
+  margin-left: auto;
+  padding: 1rem;
+}
