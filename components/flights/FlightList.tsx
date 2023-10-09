@@ -24,7 +24,7 @@ export default function FlightList() {
   return (
     <div>
       {flight ? (
-        flight.map((el, i) => <FlightItem information={el} key={i} />)
+        flight.map((el, i) => <FlightItem information={el} key={i} id={i}/>)
       ) : (
         <div>No resuts</div>
       )}

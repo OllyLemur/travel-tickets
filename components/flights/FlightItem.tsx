@@ -3,9 +3,11 @@
 import React, { useContext, useState } from "react";
 import styles from "./flightItem.module.scss";
 import FlightDetailsCard from "./flightDetailsCard/FlightDetailsCard";
-import { flightsContext } from "@/app/context/ContextAPI";
+import { flightsContext, userContext } from "@/app/context/ContextAPI";
+import { useRouter } from "next/navigation";
 
 type flightItemProps = {
+  id: number;
   information: {
     firstFlight: {
       aircompany?: string;
@@ -37,14 +39,37 @@ type flightItemProps = {
 };
 
 export default function FlightItem(props: flightItemProps) {
+  const { user, setUser } = useContext(userContext);
+  const { flights, setFlights } = useContext(flightsContext);
+  const router = useRouter()
 
+  const getFlightPrice = () => {
+    if (user.isLogin) {
+      return Math.floor(
+        (props.information.firstFlight.price +
+          props.information.secondFlight.price) *
+          flights.searchData.seats *
+          0.8
+      );
+    } else {
+      return (
+        (props.information.firstFlight.price +
+          props.information.secondFlight.price) *
+        flights.searchData.seats
+      );
+    }
+  };
 
-  const {flights, setFlights} = useContext(flightsContext)
-
+  const moreInformationHandler = () => {
+    router.push(`/flights/${props.id}`)
+  }
 
   return (
     <div className={styles.cont}>
-      <div className={styles.price}>{(props.information.firstFlight.price + props.information.secondFlight.price) * flights.searchData.seats}$</div>
+      <div className={user.isLogin ? styles.priceMember : styles.price}>
+        <p>{getFlightPrice()}$</p>
+        <button className={styles.btn} onClick={() => moreInformationHandler()}>More information</button>
+      </div>
       <div className={styles.card}>
         <h2>{props.information.firstFlight.aircompany}</h2>
         <FlightDetailsCard
@@ -52,7 +77,9 @@ export default function FlightItem(props: flightItemProps) {
           arrivalTime={props.information.firstFlight.arrivalTime}
           departureDate={props.information.firstFlight.departureDate}
           departureTime={props.information.firstFlight.departureTime}
-          destinationAirportID={props.information.firstFlight.destinationAirportID}
+          destinationAirportID={
+            props.information.firstFlight.destinationAirportID
+          }
           originAirportID={props.information.firstFlight.originAirportID}
         />
         <div className={styles.line}></div>
@@ -61,7 +88,9 @@ export default function FlightItem(props: flightItemProps) {
           arrivalTime={props.information.secondFlight.arrivalTime}
           departureDate={props.information.secondFlight.departureDate}
           departureTime={props.information.secondFlight.departureTime}
-          destinationAirportID={props.information.secondFlight.destinationAirportID}
+          destinationAirportID={
+            props.information.secondFlight.destinationAirportID
+          }
           originAirportID={props.information.secondFlight.originAirportID}
         />
       </div>

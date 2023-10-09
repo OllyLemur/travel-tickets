@@ -16,8 +16,34 @@
   text-align: center;
   font-size: x-large;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.btn{
+  background-color: coral;
+  color: white;
+  font-weight: bolder;
+  font-size: 1.1rem;
+  padding: 1rem;
+  border-radius: 1.2rem;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.priceMember{
+  flex-grow: 1;
+  padding: 2rem;
+  border-right: 1px solid darkblue;
+  text-align: center;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: pink
 }
 
 .card {
@@ -36,4 +62,8 @@
   height: 1px;
   margin: 7px;
   background-color: darkblue;
+}
+
+.member{
+  color: pink
 }
