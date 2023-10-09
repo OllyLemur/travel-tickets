@@ -1,7 +1,10 @@
-import React from 'react'
+import FlightList from "@/components/flights/FlightList";
+import React from "react";
 
 export default function FlightsPage() {
   return (
-    <div>This is Flights Page</div>
-  )
+    <div>
+      <FlightList />
+    </div>
+  );
 }

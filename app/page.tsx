@@ -1,3 +1,5 @@
+'use client'
+
 import Search from "@/components/searchBar/Search";
 import WelcomeMessage from "@/components/welcomeMessage/WelcomeMessage";
 
