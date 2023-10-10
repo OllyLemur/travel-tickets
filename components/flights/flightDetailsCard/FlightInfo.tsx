@@ -11,12 +11,8 @@ type FlightInfoProps = {
 
 export default function FlightInfo(props: FlightInfoProps) {
 
+  const flightTime = useMemo(() => calculateTime(props.arrivalTime, props.departureTime), [props.arrivalTime, props.departureTime])
 
-
-  const flightTime = useMemo(() => calculateTime(props.arrivalTime, props.departureTime), [props])
-
-
-  console.log(flightTime);
   return (
     <div className={styles.flightInfo}>
       <div className={styles.airplain}>

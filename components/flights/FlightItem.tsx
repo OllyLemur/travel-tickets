@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from "react";
+import React, { useContext, useState , useMemo} from "react";
 import styles from "./flightItem.module.scss";
 import FlightDetailsCard from "./flightDetailsCard/FlightDetailsCard";
 import { flightsContext, userContext } from "@/app/context/ContextAPI";
@@ -60,6 +60,8 @@ export default function FlightItem(props: flightItemProps) {
     }
   };
 
+  const price = useMemo(() => getFlightPrice(), [user.isLogin])
+
   const moreInformationHandler = () => {
     router.push(`/flights/${props.id}`)
   }
@@ -67,7 +69,7 @@ export default function FlightItem(props: flightItemProps) {
   return (
     <div className={styles.cont}>
       <div className={user.isLogin ? styles.priceMember : styles.price}>
-        <p>{getFlightPrice()}$</p>
+        <p>{price}$</p>
         <button className={styles.btn} onClick={() => moreInformationHandler()}>More information</button>
       </div>
       <div className={styles.card}>
